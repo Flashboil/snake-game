@@ -12,9 +12,9 @@
 
 # Development Environment
 
-{Describe the tools that you used to develop the software}
+This program was developed in Python using VS Code as the workspace.
 
-{Describe the programming language that you used and any libraries.}
+The PyGame library is used as the engine to make and run the game.
 
 # Useful Websites
 
