@@ -30,10 +30,10 @@ class Renderer:
             },
 
             "neon_retro": {
-                "snake": (80, 0, 150),
-                "apple": (255, 50, 100),
-                "grid1": (15, 15, 40),
-                "grid2": (30, 30, 70)
+            "snake": (160, 60, 255),
+            "apple": (255, 60, 120),
+            "grid1": (10, 10, 35),
+            "grid2": (20, 20, 60)
             },
 
             "tropical": {
@@ -51,12 +51,12 @@ class Renderer:
             }
         }
 
-        palette = random.choice(list(self.PALETTES.values()))
+        self.palette = random.choice(list(self.PALETTES.values()))
 
-        self.snake_color = palette["snake"]
-        self.apple_color = palette["apple"]
-        self.grid1_color = palette["grid1"]
-        self.grid2_color = palette["grid2"]
+        self.snake_color = self.palette["snake"]
+        self.apple_color = self.palette["apple"]
+        self.grid1_color = self.palette["grid1"]
+        self.grid2_color = self.palette["grid2"]
 
 
     def render_snake(self):

@@ -24,6 +24,5 @@ I referenced some palettes generated on coolors.co for the alternate palettes, b
 
 # Future Work
 * SFX for apple pickup, perhaps music as well.
-* Score counter
 * Allow for easier restart with a menu.
 * Allow for adjustable map size, apple counts, etc.

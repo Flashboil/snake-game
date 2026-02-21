@@ -20,6 +20,8 @@ class Snake:
         self.body = [(mapsize / 2, mapsize / 2), 
                      (mapsize / 2, mapsize / 2 + 1),
                      (mapsize / 2, mapsize / 2 + 2)]
+        
+        self.score = 0
 
     def get_coordinates(self):
         return self.body[0]
@@ -71,6 +73,7 @@ class Snake:
         if next_pos in self.map.apples:
             self.map.remove_apple()
             self.add_segment()
+            self.score += 1
 
         # Make a new head and remove the tail.
         self.body.insert(0, next_pos)

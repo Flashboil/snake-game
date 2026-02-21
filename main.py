@@ -19,6 +19,7 @@ MOVE_DELAY = 0.25
 accumulator = 0
 
 while running:
+
     s.update_direction()
 
     dt = clock.tick(60) / 1000
@@ -29,6 +30,7 @@ while running:
         if not s.update_location():
             running = False
         renderer.rendermap.place_apple()
+        pygame.display.set_caption(f"Snake | Score: {s.score}")
         accumulator = 0
 
     renderer.render_screen()
