@@ -6,14 +6,23 @@ class Snake:
     SOUTH = (0, 1)
     WEST = (-1, 0)
 
-    def __init__(self, mapsize):
+    def __init__(self, mapsize, map):
         self.direction = self.NORTH
+        self.mapsize = mapsize
+        self.map = map
+
         self.curr_x = mapsize / 2
         self.curr_y = mapsize / 2
-        self.mapsize = mapsize
+
+        self.prev_x = self.curr_x - 1
+        self.prev_y = self.curr_y - 1
+        
+        self.body = [(mapsize / 2, mapsize / 2), 
+                     (mapsize / 2, mapsize / 2 + 1),
+                     (mapsize / 2, mapsize / 2 + 2)]
 
     def get_coordinates(self):
-        return self.curr_x, self.curr_y
+        return self.body[0]
 
     def get_next(self):
         """Return the coordinates of the next cell the snake is going to enter
@@ -31,31 +40,46 @@ class Snake:
         key = pygame.key.get_pressed()
 
         if key[pygame.K_UP] == True or key[pygame.K_w] == True:
-            self.direction = self.NORTH
+            if self.direction != self.SOUTH:
+                self.direction = self.NORTH
         elif key[pygame.K_RIGHT] == True or key[pygame.K_d] == True:
-            self.direction = self.EAST
+            if self.direction != self.WEST:
+                self.direction = self.EAST
         elif key[pygame.K_DOWN] == True or key[pygame.K_s] == True:
-            self.direction = self.SOUTH
+            if self.direction != self.NORTH:
+                self.direction = self.SOUTH
         elif key[pygame.K_LEFT] == True or key[pygame.K_a] == True:
-            self.direction = self.WEST
+            if self.direction != self.EAST:
+                self.direction = self.WEST
 
     def update_location(self):
-        """Method updates coordinates of the snake based on its current 
-        location and current heading. If the direction is north or south, 
-        curr_y is updated by adding the direction, otherwise curr_x is updated
-          by adding the direction.
-        """
-        next_pos = self.get_next()
+        head_x, head_y = self.body[0]
 
-        if self.direction == self.NORTH or self.direction == self.SOUTH:
-            if 0 <= next_pos[1] < self.mapsize:
-                self.curr_y += self.direction[1]
-                return True
-            else:
-                return False
-        else:
-            if 0 <= next_pos[0] < self.mapsize:
-                self.curr_x += self.direction[0]
-                return True
-            else:
-                return False
+        dx, dy = self.direction
+        next_pos = (head_x + dx, head_y + dy)
+
+        # self collision
+        if next_pos in self.body:
+            return False
+
+        # wall collision
+        if not (0 <= next_pos[0] < self.mapsize and
+                0 <= next_pos[1] < self.mapsize):
+            return False
+        
+        # apple detect, add segment and remove apple
+        if next_pos in self.map.apples:
+            self.map.remove_apple()
+            self.add_segment()
+
+        # Make a new head and remove the tail.
+        self.body.insert(0, next_pos)
+        self.body.pop()
+
+        return True
+    
+    
+    def add_segment(self):
+        tail_x, tail_y = self.body[-1]
+        new_tail = (tail_x + self.direction[0], tail_y + self.direction[1])
+        self.body.append(new_tail)

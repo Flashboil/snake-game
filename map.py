@@ -7,6 +7,7 @@ class Map:
     def __init__(self, size):
         self.size = size
         self.map = self.generate_map(self.size)
+        self.apples = []
 
     def generate_map(self, size):
         """Generate a map composed of a list of lists. The size of the grid 
@@ -39,10 +40,18 @@ class Map:
         it places and apple at that location. "cell == True" signifies a 
         filled cell and triggers the loop to try again.
         """
-        cell = True
-        while cell == True:
-            randx = random.randint(0, self.size - 1)
-            randy = random.randint(0, self.size - 1)
-            if self.get_cell((randx, randy)) == self.EMPTY:
-                cell = False
-        self.map[randy][randx] = self.APPLE
+        if self.apples == []:
+            cell = True
+            while cell == True:
+                randx = random.randint(0, self.size - 1)
+                randy = random.randint(0, self.size - 1)
+                if self.get_cell((randx, randy)) == self.EMPTY:
+                    cell = False
+            
+            self.apples.append((randx, randy))
+            self.map[randy][randx] = self.APPLE
+
+    def remove_apple(self):
+        apple_coords = self.apples.pop()
+        x, y = apple_coords
+        self.map[y][x] = self.EMPTY
