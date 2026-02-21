@@ -20,7 +20,7 @@ The PyGame library is used as the engine to make and run the game.
 # AI Usage Disclosure
 
 ChatGPT was used to help with refreshing my knowledge on some things about Python class structuring. Additionally, I got help from AI for some debugging, partiuclarly with things related to rendering the game and getting the pygame clock timing right.
-I referenced some palettes generated on coolors.co for the alternate palettes, but ultimately turned to ChatGPT to help make some quick 4 color palettes that would work well. I was careful to ask if they were sourced from a particular site; it said that if generated them itself using standard guidelines for good design and readability.
+I referenced some palettes generated on coolors.co for the alternate palettes, but ultimately turned to ChatGPT to help make some quick 4 color palettes that would work well. I was careful to ask if they were sourced from a particular site; it said that if generated them itself using some guidelines for good design and readability. A few had to be tweaked afterwards.
 
 # Future Work
 * SFX for apple pickup, perhaps music as well.
