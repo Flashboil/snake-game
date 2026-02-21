@@ -2,9 +2,9 @@
 
 This program is a version of the classic Snake Game replicated in Python using PyGame. I made this program so that I could practice more with classes in Python and learn how to do things like get keyboard input from the user in real time to make a playable game.
 
-To play the game, you use WASD or the arrow keys to change direction. The snake will constantly move forward. You collect "apples" by running into them. Each apple makes your snake longer. The game ends when you colide with the wall or yourself. You cannot double back from the direction you are facing (If you are going right, you cannot go left instnatly).
+To play the game, you use WASD or the arrow keys to change direction. The snake will constantly move forward. You collect "apples" by running into them. Each apple makes your snake longer. The game ends when you colide with the wall or yourself. You cannot double back from the direction you are facing (If you are going right, you cannot go left instantly).
 
-[Software Demo Video](http://youtube.link.goes.here)
+[Software Demo Video](https://youtu.be/MZ-NQV5J0vU)
 
 # Development Environment
 
