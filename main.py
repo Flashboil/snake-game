@@ -1,34 +1,32 @@
 import pygame
 from snake import Snake
-
-# Important constants for directions.
-NORTH = 0
-EAST = 1
-SOUTH = 2
-WEST = 3
+from renderer import Renderer
 
 pygame.init()
 
-SCREEN_WIDTH = 600
-SCREEN_HEIGHT = 400
+MAP_SIZE = 20
 
-screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-
-s = Snake()
+s = Snake(MAP_SIZE)
+renderer = Renderer(MAP_SIZE)
 
 running = True
 clock = pygame.time.Clock()
-FPS = 10
+FPS = 2
 
 while running:
 
+    renderer.rendermap.place_apple()
+    renderer.render_screen()
+
     clock.tick(FPS)
+
+    print(s.get_coordinates())
 
     s.update_direction()
 
-    s.update_location()
-
-    print(s.get_coordinates())
+    if not s.update_location():
+        print("Wall!")
+        running = False
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:

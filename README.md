@@ -22,6 +22,10 @@ The PyGame library is used as the engine to make and run the game.
 * [Web Site Name](http://url.link.goes.here)
 * [Web Site Name](http://url.link.goes.here)
 
+# AI Usage Disclosure
+
+AI was used to help with relearning some things about Python class structuring.
+
 # Future Work
 
 {Make a list of things that you need to fix, improve, and add in the future.}

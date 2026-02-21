@@ -1,6 +1,6 @@
 import random
+
 class Map:
-    # Map related constants:
     EMPTY = 0
     APPLE = 1
 
@@ -14,34 +14,35 @@ class Map:
         Args:
             size (int): How big the square grid will be.
         """
+        tempmap = []
         for r in range(0, size):
-            tempmap = []
             temp = []
             for c in range(0, size):
                 temp.append(self.EMPTY)
             tempmap.append(temp)
         return tempmap
 
-    def get_cell(self, x, y):
+    def get_cell(self, coordinates):
         """Return the contents of the specified grid cell, be it snake, 
         segment, or apple.
         x coordinate is signifies the column being checked and y signifies the 
         row. That means the indexes will be map[y][x].
         Args:
-            x (int): x coordinate (column) to be checked.
-            y (int): y coordinate (row) to be checked.
+            coordiantes (int, int) x and y coordinates to check.
         """
+        x, y = coordinates
         return self.map[y][x]
     
     def place_apple(self):
         """Randomly selects a cell in the grid, then checks if it's empty. 
         If it isn't, it checks until it finds an empty cell. When it does, 
-        it places and apple at that location.
+        it places and apple at that location. "cell == True" signifies a 
+        filled cell and triggers the loop to try again.
         """
-        cell = True # Initial value to run the loop. Signifies a filled cell.
+        cell = True
         while cell == True:
-            randx = random.randint(0, self.size)
-            randy = random.randint(0, self.size)
-            if self.get_cell(randx, randy) == self.EMPTY:
+            randx = random.randint(0, self.size - 1)
+            randy = random.randint(0, self.size - 1)
+            if self.get_cell((randx, randy)) == self.EMPTY:
                 cell = False
         self.map[randy][randx] = self.APPLE
